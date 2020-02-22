@@ -31,12 +31,27 @@ function createImages($imagename)
     imagecopy($im2, $stamp2, imagesx($im2) - $sx2 - $marge_right, imagesy($im2) - $sy2 - $marge_bottom, 0, 0, imagesx($stamp2), imagesy($stamp2));
 
     // Output and free memory
-    imagepng($im, "/var/www/dev/output1.png");
-    imagepng($im2, "/var/www/dev/output2.png");
+    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    $name = generate_string($permitted_chars, 20);
+    $name1 = $name."-1.png";
+    $name2 = $name."-2.png";
+    imagepng($im, "/var/www/dev/images/".$name1);
+    imagepng($im2, "/var/www/dev/images/".$name2);
     imagedestroy($im);
     imagedestroy($im2);
 
-    return;
+    return array("voodoo_name" => $name1, "prodi_name" => $name2);
 }
 
+function generate_string($input, $strength = 16) {
+    $input_length = strlen($input);
+    $random_string = '';
+    for($i = 0; $i < $strength; $i++) {
+        $random_character = $input[mt_rand(0, $input_length - 1)];
+        $random_string .= $random_character;
+    }
+
+    return $random_string;
+}
 ?>
