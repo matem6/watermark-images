@@ -1,7 +1,7 @@
 <?php
 $imgname = "image.jpg";
 $imgurl = $_GET['imgurl'];
-$imgurl = "https://images-na.ssl-images-amazon.com/images/I/81zEwe0Z9oL.jpg";
+//$imgurl = "https://images-na.ssl-images-amazon.com/images/I/81zEwe0Z9oL.jpg";
 $imgurl = explode("._", $imgurl)[0]."._SL600_.jpg";
 
 //DOWNLOAD IMAGE
@@ -17,11 +17,10 @@ fclose($fp);
 // Load the stamp and the photo to apply the watermark to
 require_once("editImage.php");
 $names = createImages($imgname);
-echo json_encode($names);
 
 //UPLOAD IMAGE
-echo shell_exec('git add .');
-echo shell_exec('git commit -am "'.$names['voodoo_name'].'-'.$names['prodi_name'].'"');
-echo shell_exec('git push origin master');
-//echo json_encode(array("voodoo" => $imgLink1, "prodi" => $imgLink2));
+shell_exec('git add .');
+shell_exec('git commit -am "'.$names['voodoo_name'].'-'.$names['prodi_name'].'"');
+shell_exec('git push origin master');
+echo json_encode(array("voodoo" => "https://cdn.voob.it/images/".$names['voodoo_name'], "prodi" => "https://cdn.voob.it/images/".$names['prodi_name']));
 ?>
