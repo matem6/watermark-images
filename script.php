@@ -1,7 +1,7 @@
 <?php
 $imgname = "image.jpg";
 $imgurl = $_GET['imgurl'];
-//$imgurl = "https://images-na.ssl-images-amazon.com/images/I/81zEwe0Z9oL.jpg";
+$imgurl = "https://images-na.ssl-images-amazon.com/images/I/81zEwe0Z9oL.jpg";
 $imgurl = explode("._", $imgurl)[0]."._SL600_.jpg";
 
 //DOWNLOAD IMAGE
