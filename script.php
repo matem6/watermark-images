@@ -19,8 +19,10 @@ require_once("editImage.php");
 $names = createImages($imgname);
 
 //UPLOAD IMAGE
-shell_exec('git add .');
-shell_exec('git commit -am "'.$names['voodoo_name'].'-'.$names['prodi_name'].'"');
-shell_exec('git push origin master');
+require_once('Git.php');
+$repo = Git::open('/var/www/dev');
+$repo->add('.');
+$repo->commit($names['voodoo_name']." ".$names['prodi_name']);
+$repo->push('origin', 'master');
 echo json_encode(array("voodoo" => "https://cdn.voob.it/images/".$names['voodoo_name'], "prodi" => "https://cdn.voob.it/images/".$names['prodi_name']));
 ?>
