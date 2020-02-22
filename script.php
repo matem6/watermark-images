@@ -1,7 +1,7 @@
 <?php
 $imgname = "image.jpg";
 $imgurl = $_GET['imgurl'];
-//$imgurl = "https://images-na.ssl-images-amazon.com/images/I/81zEwe0Z9oL.jpg";
+$imgurl = "https://images-na.ssl-images-amazon.com/images/I/81zEwe0Z9oL.jpg";
 $imgurl = explode("._", $imgurl)[0]."._SL600_.jpg";
 
 //DOWNLOAD IMAGE
@@ -24,5 +24,6 @@ $repo = Git::open('/var/www/dev');
 $repo->add('.');
 $repo->commit($names['voodoo_name']." ".$names['prodi_name']);
 $repo->push('origin', 'master');
+
 echo json_encode(array("voodoo" => "https://cdn.voob.it/images/".$names['voodoo_name'], "prodi" => "https://cdn.voob.it/images/".$names['prodi_name']));
 ?>
